@@ -1,0 +1,100 @@
+{
+  "short_name": "React App",
+  "name": "Create React App Sample",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "shortcuts": [ 
+    { 
+      "name": "Case Studies", 
+      "short_name": "Case Studies", 
+      "url": "/case-studies", 
+      "icons": [ 
+        { 
+        "src": "/android-chrome-192x192.png", 
+        "sizes": "192x192", 
+        "type": "image/png" 
+        } 
+      ] 
+    }, 
+    { 
+      "name": "Company", 
+      "short_name": "Company", 
+      "url": "/company", 
+      "icons": [ 
+        { 
+        "src": "/android-chrome-192x192.png", 
+        "sizes": "192x192", 
+        "type": "image/png" 
+        } 
+      ] 
+    }, 
+    { 
+      "name": "Approach", 
+      "short_name": "Approach", 
+      "url": "/approach", 
+      "icons": [ 
+        { 
+        "src": "/android-chrome-192x192.png", 
+        "sizes": "192x192", 
+        "type": "image/png" 
+        } 
+      ] 
+    }, 
+    { 
+      "name": "Careers", 
+      "short_name": "Careers", 
+      "url": "/careers", 
+      "icons": [ 
+        { 
+        "src": "/android-chrome-192x192.png", 
+        "sizes": "192x192", 
+        "type": "image/png" 
+        } 
+      ] 
+    }, 
+    { 
+      "name": "Blog", 
+      "short_name": "Blog", 
+      "url": "/blog", 
+      "icons": [ 
+        { 
+        "src": "/android-chrome-192x192.png", 
+        "sizes": "192x192", 
+        "type": "image/png" 
+        } 
+      ] 
+    }, 
+    { 
+      "name": "Get a free quote", 
+      "short_name": "Get a free quote", 
+      "url": "/contacts", 
+      "icons": [ 
+        { 
+        "src": "/android-chrome-192x192.png", 
+        "sizes": "192x192", 
+        "type": "image/png" 
+        } 
+      ] 
+    } 
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "scope": "/"
+}

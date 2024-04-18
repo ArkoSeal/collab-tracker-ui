@@ -1,0 +1,19 @@
+.form-section {
+    margin: 1rem 0;
+    .display-form-container {
+        display: flex;
+        flex-direction: row;
+    
+        .form-content {
+            margin-right: 1rem;
+
+            @media (max-width: 768px) {
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
+    }
+}
