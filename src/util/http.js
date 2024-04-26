@@ -32,3 +32,24 @@ export async function createInvoice(invoice) {
     const invoices = await response.json();
     return invoices;
 }
+
+export async function fbLogin(param) {
+    const response = await fetch('http://localhost:5000/api/auth/facebook', {
+        method: 'POST',
+        body: JSON.stringify(param),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    if(!response.ok) {
+        const error = new Error('An error occured');
+        error.code = response.status;
+        error.info = await response.json();
+        throw error;
+    }
+    const token = response.headers.get('x-auth-token');
+    console.log('jwt', token);
+    const invoices = await response.json();
+    return invoices;
+}
