@@ -9,12 +9,13 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import {QueryClientProvider, QueryClient} from '@tanstack/react-query';
 
-import {BrowserRouter, Route, Routes, Redirect, Navigate} from 'react-router-dom';
+import {Route, Routes, Navigate, redirect} from 'react-router-dom';
 import InvoiceGenerator from './pages/InvoiceGenerator';
 import Dashboard from './pages/Dashboard';
 import InvoiceList from './pages/InvoiceList';
 import InvoiceDetails from './pages/InvoiceDetails';
-import HeaderComponent from './components/Header';
+
+import Login from './pages/Login';
 
 const queryClient = new QueryClient();
 
@@ -23,15 +24,17 @@ function App() {
     <React.Fragment>
         <CssBaseline />
         <Container maxWidth='xl'>
-            <HeaderComponent />
             <div className='collab-main-container'>
               <QueryClientProvider client={queryClient}>
                 <Routes>
-                  <Route path='/' element={<Navigate to='/collab' replace/>} />
-                  <Route path='/collab' element={<Dashboard />} />
-                  <Route path='/invoice' element={<InvoiceList />} />
-                  <Route path='/invoice-gen' element={<InvoiceGenerator />} />
-                  <Route path='/invoice-details' element={<InvoiceDetails />} />
+                  <Route path='/' element={<Navigate to='/login' replace/>} />
+                  <Route path='/login' element={<Login />} />
+                  <Route path='/collab'element={<Dashboard />} >
+                    <Route path='dashboard' element={<Dashboard />} />
+                    <Route path='invoice' element={<InvoiceList />} loader={()=>{ redirect('/login')}}/>
+                    <Route path='invoice-gen' element={<InvoiceGenerator />} />
+                    <Route path='invoice-details' element={<InvoiceDetails />} />
+                  </Route>
                 </Routes>
               </QueryClientProvider>
             </div>
