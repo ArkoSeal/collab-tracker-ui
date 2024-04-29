@@ -2,32 +2,6 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import React, {useEffect, useState} from 'react';
 import { fbLogin } from "../util/http";
 import Facebooklogin from 'react-facebook-login';
-import config from '../config.json';
-
-
-// const Login = () => {
-
-//     const {mutate: login} = useMutation({mutationFn: fbLogin})
-   
-//     const facebookResponse = (response) => {
-//         console.log(response)
-//         login({access_token: response.accessToken});
-//     };
-
-    
-//     return (
-//         <>
-//             <div>Login</div>
-//             {/* <button onClick={onFbClickHandler}>Facebook login</button> */}
-//             <Facebooklogin
-//                 appId={config.FACEBOOK_APP_ID}
-//                 autoLoad={false}
-//                 callback={facebookResponse} />
-//         </>
-//     );
-// }
-
-// export default Login;
 
 
 import PropTypes from 'prop-types';

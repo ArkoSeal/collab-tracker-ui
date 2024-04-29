@@ -6,11 +6,18 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import {InvoiceContextProvider} from './store/invoice-context.provider';
 import { BrowserRouter } from 'react-router-dom';
+import AuthContextProvider from './providers/auth-context.provider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <InvoiceContextProvider><BrowserRouter><App /></BrowserRouter></InvoiceContextProvider>
+    <AuthContextProvider>
+      <InvoiceContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </InvoiceContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );
 
