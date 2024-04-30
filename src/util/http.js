@@ -49,7 +49,6 @@ export async function fbLogin(param) {
         throw error;
     }
     const token = response.headers.get('x-auth-token');
-    console.log('jwt', token);
-    const invoices = await response.json();
-    return invoices;
+    const user = await response.json();
+    return {jwt: token, userInfo: user};
 }

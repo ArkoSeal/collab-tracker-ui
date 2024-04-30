@@ -1,26 +1,18 @@
 import * as React from 'react';
 import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import LoginWithFacebook from './LoginWithFacebook';
 // import Facebooklogin from 'react-facebook-login';
-import { useMutation } from "@tanstack/react-query";
-import { fbLogin } from "../../util/http";
-import config from '../../config.json';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+
 
 
 export default function Hero() {
-    const {mutate: login} = useMutation({mutationFn: fbLogin})
-   
-    const facebookResponse = (response) => {
-        console.log(response)
-        login({access_token: response.accessToken});
-    };
 
   return (
     <Box
@@ -84,15 +76,7 @@ export default function Hero() {
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
           >
-            <FacebookLogin
-                appId={config.FACEBOOK_APP_ID}
-                autoLoad={false}
-                callback={facebookResponse}
-                cssClass="my-facebook-button-class"
-                render={renderProps => (
-                  <Button variant="contained" color="primary" onClick={renderProps.onClick}>Start now</Button>
-                )} />
-            
+            <LoginWithFacebook />
           </Stack>
           <Typography variant="caption" textAlign="center" sx={{ opacity: 0.8 }}>
             By clicking &quot;Start now&quot; you agree to our&nbsp;
