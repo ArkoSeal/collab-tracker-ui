@@ -14,9 +14,8 @@ import InvoiceGenerator from './pages/InvoiceGenerator';
 import Dashboard from './pages/Dashboard';
 import InvoiceList from './pages/InvoiceList';
 import InvoiceDetails from './pages/InvoiceDetails';
-
+import { AuthContext } from './providers/auth-context.provider';
 import Login from './pages/Login';
-import AuthContextProvider from './providers/auth-context.provider';
 
 const queryClient = new QueryClient();
 
@@ -32,15 +31,11 @@ function App() {
                   <Routes>
                     <Route path='/' element={<Navigate to='/login' replace/>} />
                     <Route path='/login' element={<Login />} />
-                    {ctxAuth?.token && (
-                      <Route path='/collab'element={<Dashboard />} >
-                        <Route path='dashboard' element={<Dashboard />} />
+                      <Route path='/collab' element={<Dashboard />} >
                         <Route path='invoice' element={<InvoiceList />} loader={()=>{ redirect('/login')}}/>
                         <Route path='invoice-gen' element={<InvoiceGenerator />} />
                         <Route path='invoice-details' element={<InvoiceDetails />} />
                       </Route>
-                    )
-                    }
                   </Routes>
               </QueryClientProvider>
             </div>
