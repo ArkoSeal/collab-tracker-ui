@@ -14,7 +14,7 @@ const LoginWithFacebook = (props) => {
     const authCtx = useContext(AuthContext);
 
     const onFacebookLoginSuccess = (res) => {
-        authCtx.login(res.userInfo.facebookProvider.fbId, res.jwt)
+        authCtx.login(res.userInfo.facebookProvider.fbId, res.jwt, res);
         navigate('/collab');
     }
    

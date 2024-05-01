@@ -1,5 +1,5 @@
 export async function fetchAllInvoice() {
-    const response = await fetch('http://localhost:5000/api/invoice/all-invoices');
+    const response = await fetch('http://localhost:8080/api/invoice/all-invoices');
 
     if(!response.ok) {
         const error = new Error('An error occured');
@@ -13,7 +13,7 @@ export async function fetchAllInvoice() {
 }
 
 export async function createInvoice(invoice) {
-    const response = await fetch('http://localhost:5000/api/invoice/create-invoice', {
+    const response = await fetch('http://localhost:8080/api/invoice/create-invoice', {
         method: 'POST',
         body: JSON.stringify(invoice),
         headers: {
@@ -34,7 +34,7 @@ export async function createInvoice(invoice) {
 }
 
 export async function fbLogin(param) {
-    const response = await fetch('http://localhost:5000/api/auth/facebook', {
+    const response = await fetch('http://localhost:8080/api/auth/facebook', {
         method: 'POST',
         body: JSON.stringify(param),
         headers: {

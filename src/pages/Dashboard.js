@@ -7,12 +7,14 @@ import { useContext } from "react";
 
 const Dashboard = () => {
     const ctxAuth = useContext(AuthContext);
+    
+    console.log(ctxAuth.user)
 
     return (
         <>
             <HeaderComponent />
             <div>Welcome {ctxAuth.userId}</div>
-            <div>logged in?: {`${ctxAuth.isLoggedIn}`}</div>
+            <div>logged in?: {`${ctxAuth.user.fullName}`}</div>
             <Outlet />
         </>
     );
