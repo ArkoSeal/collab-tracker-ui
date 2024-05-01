@@ -22,7 +22,7 @@ import Features from '../components/LandingPageComps/Features';
 import Testimonials from '../components/LandingPageComps/Testimonials';
 import FAQ from '../components/LandingPageComps/FAQ';
 import Footer from '../components/LandingPageComps/Footer';
-import getLPTheme from './getLPTheme';
+import getLPTheme,{brand,secondary} from '../Theme';
 
 
 const ToggleCustomTheme = ({ showCustomTheme, toggleCustomTheme }) => {
