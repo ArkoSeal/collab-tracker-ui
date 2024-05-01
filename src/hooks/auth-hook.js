@@ -1,4 +1,5 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useContext } from 'react';
+
 
 let logoutTimer;
 
@@ -6,10 +7,13 @@ export const useAuth = () => {
   const [token, setToken] = useState(false);
   const [tokenExpirationDate, setTokenExpirationDate] = useState();
   const [userId, setUserId] = useState(false);
+  const [user, setUser] = useState();
+  
 
-  const login = useCallback((uid, token, expirationDate) => {
+  const login = useCallback((uid, token, user, expirationDate) => {
     setToken(token);
     setUserId(uid);
+    setUser(user?.userInfo);
     const tokenExpirationDate =
       expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
     setTokenExpirationDate(tokenExpirationDate);
@@ -50,5 +54,5 @@ export const useAuth = () => {
     }
   }, [login]);
 
-  return { token, login, logout, userId };
+  return { token, login, logout, userId , user};
 };
