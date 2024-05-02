@@ -1,7 +1,7 @@
 import {Box, IconButton, useTheme} from "@mui/material";
 import { useContext } from "react";
 import InputBase from "@mui/material/InputBase";
-import getLPTheme,{brand,secondary} from '../../Theme';
+import getLPTheme,{brand,secondary} from '../../GlobalTheme';
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
