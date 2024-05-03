@@ -3,7 +3,7 @@ import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import {brand,secondary} from '../../GlobalTheme';
+import { tokens } from "../../CollabTheme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
@@ -16,17 +16,16 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
-
-import profilePic from '../../assets/user.png';
+import userPic from '../../assets/user.png';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
-//   const colors = tokens(theme.palette.mode);
+  const colors = tokens(theme.palette.mode);
   return (
     <MenuItem
       active={selected === title}
       style={{
-        color: secondary[300],
+        color: colors.grey[100],
       }}
       onClick={() => setSelected(title)}
       icon={icon}
@@ -37,40 +36,54 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   );
 };
 
-const AppSidebar = ({fullName}) => {
+const AppSidebar = (props) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
 
+  const menuItemStyles = {
+    root: {
+      fontSize: '13px',
+      fontWeight: 400,
+    },
+    icon: {
+      color: colors.blueAccent[400]
+    },
+    SubMenuExpandIcon: {
+      color: '#b6b7b9',
+    },
+    subMenuContent: ({ level }) => ({
+      backgroundColor:
+        level === 0
+          ? colors.brand[300]
+          : 'transparent',
+    }),
+    button: {
+      color: colors.grey[400],
+      '&:hover': {
+        backgroundColor: colors.brand[200],
+        color: colors.brand[400],
+      },
+    },
+    label: ({ open }) => ({
+      fontWeight: open ? 600 : undefined,
+    }),
+  };
+
   return (
-    <Box
-      sx={{
-        "& .pro-sidebar-inner": {
-          background: `${brand[50]} !important`,
-        },
-        "& .pro-icon-wrapper": {
-          backgroundColor: "transparent !important",
-        },
-        "& .pro-inner-item": {
-          padding: "5px 35px 5px 20px !important",
-        },
-        "& .pro-inner-item:hover": {
-          color: "#868dfb !important",
-        },
-        "& .pro-menu-item.active": {
-          color: "#6870fa !important",
-        },
-      }}
-    >
-      <Sidebar collapsed={isCollapsed}>
-        <Menu iconShape="square">
+    <Box>
+      <Sidebar collapsed={isCollapsed} backgroundColor={theme.palette.mode === 'dark' ?colors.primary[400]:colors.grey[50] }>
+        <Menu iconShape="square" menuItemStyles={menuItemStyles}>
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
             style={{
               margin: "10px 0 20px 0",
-              color: brand[50],
+              color: colors.grey[100],
             }}
+            
           >
             {!isCollapsed && (
               <Box
@@ -79,8 +92,8 @@ const AppSidebar = ({fullName}) => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h4" color={brand[400]}>
-                  CollabGram
+                <Typography variant="h3" color={colors.grey[100]}>
+                  ADMINIS
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -96,21 +109,21 @@ const AppSidebar = ({fullName}) => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={profilePic}
+                  src={userPic}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
               <Box textAlign="center">
                 <Typography
-                  variant="h5"
-                  color={brand[700]}
+                  variant="h2"
+                  color={colors.grey[100]}
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  {fullName}
+                  {props.fullName}
                 </Typography>
-                <Typography variant="h5" color={brand[500]}>
-                  @arkoinsta
+                <Typography variant="h5" color={colors.greenAccent[500]}>
+                  @instaId
                 </Typography>
               </Box>
             </Box>
@@ -127,7 +140,7 @@ const AppSidebar = ({fullName}) => {
 
             <Typography
               variant="h6"
-              color={secondary[400]}
+              color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
               Data
@@ -156,7 +169,7 @@ const AppSidebar = ({fullName}) => {
 
             <Typography
               variant="h6"
-              color={secondary[400]}
+              color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
               Pages
@@ -185,7 +198,7 @@ const AppSidebar = ({fullName}) => {
 
             <Typography
               variant="h6"
-              color={secondary[400]}
+              color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
               Charts

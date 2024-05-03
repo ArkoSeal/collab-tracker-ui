@@ -5,7 +5,8 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import './App.scss';
 
-import CssBaseline from '@mui/material/CssBaseline';
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ColorModeContext, useMode } from "./CollabTheme";
 import Container from '@mui/material/Container';
 import {QueryClientProvider, QueryClient} from '@tanstack/react-query';
 
@@ -21,27 +22,28 @@ const queryClient = new QueryClient();
 
 function App() {
   const ctxAuth = useContext('AuthContext');
+  const [theme, colorMode] = useMode();
 
   return (
-    <React.Fragment>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Container maxWidth='xl'>
-            <div className='collab-main-container'>
-              <QueryClientProvider client={queryClient}>
-                  <Routes>
-                    <Route path='/' element={<Navigate to='/login' replace/>} />
-                    <Route path='/login' element={<Login />} />
-                      <Route path='/collab' element={<Dashboard />} >
-                        <Route path='invoice' element={<InvoiceList />} loader={()=>{ redirect('/login')}}/>
-                        <Route path='invoice-gen' element={<InvoiceGenerator />} />
-                        <Route path='invoice-details' element={<InvoiceDetails />} />
-                      </Route>
-                  </Routes>
-              </QueryClientProvider>
-            </div>
-        </Container>
-    </React.Fragment>
-   );
+          <div className='collab-main-container'>
+            <QueryClientProvider client={queryClient}>
+                <Routes>
+                  <Route path='/' element={<Navigate to='/login' replace/>} />
+                  <Route path='/login' element={<Login />} />
+                    <Route path='/collab' element={<Dashboard />} >
+                      <Route path='invoice' element={<InvoiceList />} loader={()=>{ redirect('/login')}}/>
+                      <Route path='invoice-gen' element={<InvoiceGenerator />} />
+                      <Route path='invoice-details' element={<InvoiceDetails />} />
+                    </Route>
+                </Routes>
+            </QueryClientProvider>
+          </div>
+        </ThemeProvider>
+    </ColorModeContext.Provider>
+  );
 }
 
 export default App;
