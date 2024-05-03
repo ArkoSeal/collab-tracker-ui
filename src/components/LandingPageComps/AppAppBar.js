@@ -75,6 +75,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                   : '0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)',
             })}
           >
+            {/* logo and menu items */}
             <Box
               sx={{
                 flexGrow: 1,
@@ -91,6 +92,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                 style={logoStyle}
                 alt="logo of sitemark"
               />
+              {/* menu items features, testimonials, highlights, pricing, faq */}
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem
                   onClick={() => scrollToSection('features')}
@@ -144,7 +146,7 @@ function AppAppBar({ mode, toggleColorMode }) {
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               <LoginWithFacebook />
             </Box>
-            <Box sx={{ display: { sm: '', md: 'none' } }}>
+            {/* <Box sx={{ display: { sm: '', md: 'none' } }}>
               <Button
                 variant="text"
                 color="primary"
@@ -213,7 +215,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                   </MenuItem>
                 </Box>
               </Drawer>
-            </Box>
+            </Box> */}
           </Toolbar>
         </Container>
       </AppBar>

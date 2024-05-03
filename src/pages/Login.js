@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import React, {useEffect, useState} from 'react';
 import { fbLogin } from "../util/http";
 import Facebooklogin from 'react-facebook-login';
-
+import { useTheme } from "@mui/material";
 
 import PropTypes from 'prop-types';
 
@@ -22,67 +22,62 @@ import Features from '../components/LandingPageComps/Features';
 import Testimonials from '../components/LandingPageComps/Testimonials';
 import FAQ from '../components/LandingPageComps/FAQ';
 import Footer from '../components/LandingPageComps/Footer';
-import getLPTheme,{brand,secondary} from '../GlobalTheme';
+// import getLPTheme,{brand,secondary} from '../GlobalTheme';
+import { ColorModeContext, tokens } from "../CollabTheme";
+import { useContext } from "react";
 
+// const ToggleCustomTheme = ({ showCustomTheme, toggleCustomTheme }) => {
+//   return (
+//     <Box
+//       sx={{
+//         display: 'flex',
+//         flexDirection: 'column',
+//         alignItems: 'center',
+//         width: '100dvw',
+//         position: 'fixed',
+//         bottom: 24,
+//       }}
+//     >
+//       <ToggleButtonGroup
+//         color="primary"
+//         exclusive
+//         value={showCustomTheme}
+//         onChange={toggleCustomTheme}
+//         aria-label="Platform"
+//         sx={{
+//           backgroundColor: 'background.default',
+//           '& .Mui-selected': {
+//             pointerEvents: 'none',
+//           },
+//         }}
+//       >
+//         <ToggleButton value>
+//           <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
+//           Custom theme
+//         </ToggleButton>
+//         <ToggleButton value={false}>Material Design 2</ToggleButton>
+//       </ToggleButtonGroup>
+//     </Box>
+//   );
+// }
 
-const ToggleCustomTheme = ({ showCustomTheme, toggleCustomTheme }) => {
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '100dvw',
-        position: 'fixed',
-        bottom: 24,
-      }}
-    >
-      <ToggleButtonGroup
-        color="primary"
-        exclusive
-        value={showCustomTheme}
-        onChange={toggleCustomTheme}
-        aria-label="Platform"
-        sx={{
-          backgroundColor: 'background.default',
-          '& .Mui-selected': {
-            pointerEvents: 'none',
-          },
-        }}
-      >
-        <ToggleButton value>
-          <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
-          Custom theme
-        </ToggleButton>
-        <ToggleButton value={false}>Material Design 2</ToggleButton>
-      </ToggleButtonGroup>
-    </Box>
-  );
-}
-
-ToggleCustomTheme.propTypes = {
-  showCustomTheme: PropTypes.shape({
-    valueOf: PropTypes.func.isRequired,
-  }).isRequired,
-  toggleCustomTheme: PropTypes.func.isRequired,
-};
+// ToggleCustomTheme.propTypes = {
+//   showCustomTheme: PropTypes.shape({
+//     valueOf: PropTypes.func.isRequired,
+//   }).isRequired,
+//   toggleCustomTheme: PropTypes.func.isRequired,
+// };
 
 const Login = () => {
-  const [mode, setMode] = useState('light');
-  const [showCustomTheme, setShowCustomTheme] = useState(true);
-  const LPtheme = createTheme(getLPTheme(mode));
-  const defaultTheme = createTheme({ palette: { mode } });
-
-  const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const colorMode = useContext(ColorModeContext);
 
   return (
-    <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
-      <CssBaseline />
-      <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
+    <>
+      <AppAppBar mode={theme.palette.mode} toggleColorMode={colorMode.toggleColorMode} />
       <Hero />
-      <Box sx={{ bgcolor: 'background.default' }}>
+      <Box sx={{ bgcolor: colors.primary[400] }}>
         <LogoCollection />
         <Features />
         <Divider />
@@ -96,7 +91,7 @@ const Login = () => {
         <Divider />
         <Footer />
       </Box>
-    </ThemeProvider>
+    </>
   );
 }
 export default Login;
